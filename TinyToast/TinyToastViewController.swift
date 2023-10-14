@@ -11,11 +11,17 @@ import UIKit
 final class TinyToastViewController: UIViewController {
     var message: String = ""
     var valign: TinyToastDisplayVAlign = .center
-    
+    var textColor: UIColor = UIColor.white
+    var backgroundColor: UIColor = UIColor.black
+    var textFont: UIFont = UIFont.systemFont(ofSize: 15)
+
     private var toastView: UIView?
-    private let windowWidthRatio: CGFloat = 0.95 // 95% of parent screen width
-    private let fontSize: CGFloat = 15.0
-    private let margin: CGFloat = 15.0
+    private var textLabel: UILabel?
+    private let windowWidthRatio: CGFloat = 0.9 // 95% of parent screen width
+    private var fontSize: CGFloat {
+        textFont.fontDescriptor.pointSize
+    }
+    private let margin: CGFloat = 40.0
     // Size of ToastView
     private var toastViewRect: CGRect {
         return CGRect(x: 0,
@@ -59,16 +65,18 @@ final class TinyToastViewController: UIViewController {
         
         // Create Label
         let messageLabel = createMessageLabel(message: message)
-        
+        messageLabel.textColor = self.textColor
+        messageLabel.tag = 10502
         // Create Toast
         toastView = createToastView(messageLabelWidth: messageLabel.bounds.width,
                                     messageLabelHeight: messageLabel.bounds.height)
+        toastView?.backgroundColor = backgroundColor
         
         toastView?.addSubview(messageLabel)
     }
     
     override func viewWillLayoutSubviews() {
-        guard let toastView = toastView else { return }
+        guard let toastView = toastView, let textLabel = toastView.viewWithTag(10502) as? UILabel else { return }
         
         // Rotate Toast View
         let angle = getAngle(orientation: TinyToastViewController.orientation)
@@ -117,6 +125,8 @@ final class TinyToastViewController: UIViewController {
         default:
             break
         }
+
+        textLabel.center = CGPoint(x: toastView.frame.width/2, y: toastView.frame.height/2)
     }
 }
 
@@ -124,16 +134,11 @@ extension TinyToastViewController {
     // Create Label
     private func createMessageLabel(message: String) -> UILabel {
         let messageLabel: UILabel = UILabel(frame: CGRect(x: 12, y: 9, width: labelWidth, height: 10))
-        if view.isDarkMode {
-            messageLabel.textColor = UIColor.black
-        } else {
-           messageLabel.textColor = UIColor.white
-        }
         messageLabel.backgroundColor = UIColor.clear
         messageLabel.isUserInteractionEnabled = false
         messageLabel.text = message
-        messageLabel.font = UIFont.systemFont(ofSize: fontSize)
-        messageLabel.textAlignment = NSTextAlignment.left
+        messageLabel.font = textFont
+        messageLabel.textAlignment = NSTextAlignment.center
         messageLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         messageLabel.numberOfLines = 0
         messageLabel.sizeToFit()
@@ -142,20 +147,14 @@ extension TinyToastViewController {
     
     // Create Toast View
     private func createToastView(messageLabelWidth: CGFloat, messageLabelHeight: CGFloat) -> UIView {
-        let toastView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: messageLabelWidth + 12 + 12, height: messageLabelHeight + 9 + 9 + 1))
-        if view.isDarkMode {
-            toastView.backgroundColor = UIColor(red: 120.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.98)
-            toastView.layer.borderColor = UIColor(red: 60.0/255.0, green: 60.0/255.0, blue: 67.0/255.0, alpha: 0.98).cgColor
-        } else {
-            toastView.backgroundColor = UIColor.black
-            toastView.layer.borderColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 0.95).cgColor
-        }
+        let toastView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: messageLabelWidth + 44, height: messageLabelHeight + 16))
         toastView.isUserInteractionEnabled = false
-        toastView.layer.cornerRadius = 8.0
+        toastView.layer.cornerRadius = toastView.frame.height/2
         toastView.layer.borderWidth = 1.0
         toastView.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
         toastView.layer.shadowColor = UIColor.darkGray.cgColor
         toastView.layer.shadowOpacity = 0.4
+        toastView.layer.shadowRadius = 6
         return toastView
     }
     

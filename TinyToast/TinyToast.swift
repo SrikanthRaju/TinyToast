@@ -37,16 +37,32 @@ public class TinyToast: TinyToastDelegate {
 
 extension TinyToast {
     // Duration: Pre-Settings
-    public func show(message: String, valign: TinyToastDisplayVAlign = .center, duration: TinyToastDisplayDuration) {
+    public func show(message: String,
+                     valign: TinyToastDisplayVAlign = .center,
+                     duration: TinyToastDisplayDuration,
+                     backgoundColor: UIColor,
+                     textColor: UIColor) {
         AsyncUtil.sync {
-            queue.append(TinyToastModel(message: message, valign: valign, duration: duration.getDurationTime()))
+            queue.append(TinyToastModel(message: message,
+                                        valign: valign,
+                                        duration: duration.getDurationTime(),
+                                        backgoundColor: backgoundColor,
+                                        textColor: textColor))
         }
     }
     
     // Duration: User Setting
-    public func show(message: String, valign: TinyToastDisplayVAlign = .center, duration: TimeInterval) {
+    public func show(message: String,
+                     valign: TinyToastDisplayVAlign = .center,
+                     duration: TimeInterval,
+                     backgoundColor: UIColor,
+                     textColor: UIColor) {
         AsyncUtil.sync {
-            queue.append(TinyToastModel(message: message, valign: valign, duration: duration))
+            queue.append(TinyToastModel(message: message,
+                                        valign: valign,
+                                        duration: duration,
+                                        backgoundColor: backgoundColor,
+                                        textColor: textColor))
         }
     }
     

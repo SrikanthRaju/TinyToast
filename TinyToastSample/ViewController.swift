@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var segVAlign: UISegmentedControl!
     @IBOutlet weak var segDuration: UISegmentedControl!
     
-    let message = "TinyToast is simple toast library in Swift."
+    let message = "TinyToast is simple Swift."
     var valign: TinyToastDisplayVAlign = .center
     var duration: TinyToastDisplayDuration = .normal
     
@@ -88,7 +88,7 @@ extension ViewController {
     
     @IBAction func btnShowAction(_ sender: StandardButton) {
         // Show Toast
-        TinyToast.shared.show(message: textView.text!, valign: valign, duration: duration)
+        TinyToast.shared.show(message: textView.text!, valign: valign, duration: duration, backgoundColor: UIColor.black, textColor: UIColor.gray)
     }
     
     @IBAction func btnDismissAction(_ sender: StandardButton) {
