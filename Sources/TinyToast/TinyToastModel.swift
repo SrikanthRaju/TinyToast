@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit.UIColor
+import UIKit.UIFont
 
 
 struct TinyToastModel {
@@ -16,12 +17,14 @@ struct TinyToastModel {
     var duration: TimeInterval
     var backgoundColor: UIColor
     var textColor: UIColor
+    var textFont: UIFont
 
-    init(message: String, valign: TinyToastDisplayVAlign, duration: TimeInterval, backgoundColor: UIColor, textColor: UIColor) {
+    init(message: String, valign: TinyToastDisplayVAlign, duration: TimeInterval, backgoundColor: UIColor, textColor: UIColor, font: UIFont) {
         self.message = message
         self.valign = valign
         self.duration = duration
         self.backgoundColor = backgoundColor
         self.textColor = textColor
+        self.textFont = font
     }
 }

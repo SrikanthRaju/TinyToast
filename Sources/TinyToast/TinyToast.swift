@@ -41,13 +41,15 @@ extension TinyToast {
                      valign: TinyToastDisplayVAlign = .center,
                      duration: TinyToastDisplayDuration,
                      backgoundColor: UIColor,
-                     textColor: UIColor) {
+                     textColor: UIColor,
+                     font: UIFont = UIFont.systemFont(ofSize: 15)) {
         AsyncUtil.sync {
             queue.append(TinyToastModel(message: message,
                                         valign: valign,
                                         duration: duration.getDurationTime(),
                                         backgoundColor: backgoundColor,
-                                        textColor: textColor))
+                                        textColor: textColor,
+                                        font: font))
         }
     }
     
@@ -56,13 +58,15 @@ extension TinyToast {
                      valign: TinyToastDisplayVAlign = .center,
                      duration: TimeInterval,
                      backgoundColor: UIColor,
-                     textColor: UIColor) {
+                     textColor: UIColor,
+                     font: UIFont = UIFont.systemFont(ofSize: 15)) {
         AsyncUtil.sync {
             queue.append(TinyToastModel(message: message,
                                         valign: valign,
                                         duration: duration,
                                         backgoundColor: backgoundColor,
-                                        textColor: textColor))
+                                        textColor: textColor,
+                                        font: font))
         }
     }
     
@@ -89,7 +93,12 @@ extension TinyToast {
         if !isQueued {
             return
         }
-        toastHandler.show(message: queue[0].message, valign: queue[0].valign, duration: queue[0].duration)
+        toastHandler.show(message: queue[0].message,
+                          valign: queue[0].valign,
+                          duration: queue[0].duration,
+                          backgoundColor: queue[0].backgoundColor,
+                          textColor: queue[0].textColor,
+                          font: queue[0].textFont)
     }
     
     func didCompleted() {
