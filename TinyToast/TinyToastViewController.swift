@@ -71,6 +71,11 @@ final class TinyToastViewController: UIViewController {
         toastView = createToastView(messageLabelWidth: messageLabel.bounds.width,
                                     messageLabelHeight: messageLabel.bounds.height)
         toastView?.backgroundColor = backgroundColor
+        toastView?.layer.borderWidth = 0.5
+        toastView?.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
+        toastView?.layer.shadowColor = backgroundColor.cgColor
+        toastView?.layer.shadowOpacity = 0.4
+        toastView?.layer.shadowRadius = 6
         
         toastView?.addSubview(messageLabel)
     }
@@ -150,11 +155,6 @@ extension TinyToastViewController {
         let toastView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: messageLabelWidth + 44, height: messageLabelHeight + 16))
         toastView.isUserInteractionEnabled = false
         toastView.layer.cornerRadius = toastView.frame.height/2
-        toastView.layer.borderWidth = 1.0
-        toastView.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
-        toastView.layer.shadowColor = UIColor.darkGray.cgColor
-        toastView.layer.shadowOpacity = 0.4
-        toastView.layer.shadowRadius = 6
         return toastView
     }
     
