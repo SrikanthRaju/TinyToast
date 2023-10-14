@@ -20,7 +20,12 @@ final class TinyToastHandler {
     private var tinyToastViewController: TinyToastViewController?
     var delegate: TinyToastDelegate?
     
-    func show(message: String, valign: TinyToastDisplayVAlign = .center, duration: TimeInterval) -> Void {
+    func show(message: String,
+              valign: TinyToastDisplayVAlign = .center,
+              duration: TimeInterval,
+              backgoundColor: UIColor,
+              textColor: UIColor,
+              font: UIFont = UIFont.systemFont(ofSize: 15)) -> Void {
         // Create UIWindow
         toastWindow = WindowBuilder.build(frame: UIScreen.main.bounds, orientation: TinyToastViewController.orientation)
         guard toastWindow != nil else {
@@ -32,6 +37,9 @@ final class TinyToastHandler {
         tinyToastViewController = TinyToastViewController()
         tinyToastViewController?.message = message
         tinyToastViewController?.valign = valign
+        tinyToastViewController?.backgroundColor = backgoundColor
+        tinyToastViewController?.textColor = textColor
+        tinyToastViewController?.textFont = font
         toastWindow?.rootViewController = tinyToastViewController
         
         // Fade in
