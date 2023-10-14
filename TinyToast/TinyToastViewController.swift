@@ -71,7 +71,7 @@ final class TinyToastViewController: UIViewController {
         toastView = createToastView(messageLabelWidth: messageLabel.bounds.width,
                                     messageLabelHeight: messageLabel.bounds.height)
         toastView?.backgroundColor = backgroundColor
-        toastView?.layer.borderWidth = 0.5
+        toastView?.layer.borderWidth = 0.05
         toastView?.addSubview(messageLabel)
     }
     
