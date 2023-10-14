@@ -7,15 +7,21 @@
 //
 
 import Foundation
+import UIKit.UIColor
+
 
 struct TinyToastModel {
     var message: String
     var valign: TinyToastDisplayVAlign
     var duration: TimeInterval
-    
-    init(message: String, valign: TinyToastDisplayVAlign, duration: TimeInterval) {
+    var backgoundColor: UIColor
+    var textColor: UIColor
+
+    init(message: String, valign: TinyToastDisplayVAlign, duration: TimeInterval, backgoundColor: UIColor, textColor: UIColor) {
         self.message = message
         self.valign = valign
         self.duration = duration
+        self.backgoundColor = backgoundColor
+        self.textColor = textColor
     }
 }
