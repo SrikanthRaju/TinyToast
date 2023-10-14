@@ -73,7 +73,7 @@ final class TinyToastViewController: UIViewController {
         toastView?.backgroundColor = backgroundColor
         toastView?.layer.borderWidth = 0.5
         toastView?.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
-        toastView?.layer.shadowColor = backgroundColor.cgColor
+        toastView?.layer.shadowColor = backgroundColor.withAlphaComponent(0.4).cgColor
         toastView?.layer.shadowOpacity = 0.4
         toastView?.layer.shadowRadius = 6
         
