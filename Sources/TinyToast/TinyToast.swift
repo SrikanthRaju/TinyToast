@@ -56,7 +56,7 @@ extension TinyToast {
     // Duration: User Setting
     public func show(message: String,
                      valign: TinyToastDisplayVAlign = .center,
-                     duration: TimeInterval,
+                     duration: DispatchTimeInterval,
                      backgoundColor: UIColor,
                      textColor: UIColor,
                      font: UIFont = UIFont.systemFont(ofSize: 15)) {

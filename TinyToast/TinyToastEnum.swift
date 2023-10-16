@@ -19,16 +19,13 @@ public enum TinyToastDisplayDuration {
     case normal
     case long
     case longLong
-    func getDurationTime() -> TimeInterval {
+    
+    func getDurationTime() -> DispatchTimeInterval {
         switch self {
-        case .short:
-            return 2.0
-        case .normal:
-            return 3.5
-        case .long:
-            return 5.0
-        case .longLong:
-            return 8.0
+            case .short: return .milliseconds(1500)
+            case .normal: return .milliseconds(3000)
+            case .long: return .milliseconds(5000)
+            case .longLong: return .milliseconds(8000)
         }
     }
 }

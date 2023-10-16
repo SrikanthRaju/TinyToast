@@ -14,12 +14,12 @@ import UIKit.UIFont
 struct TinyToastModel {
     var message: String
     var valign: TinyToastDisplayVAlign
-    var duration: TimeInterval
+    var duration: DispatchTimeInterval
     var backgoundColor: UIColor
     var textColor: UIColor
     var textFont: UIFont
 
-    init(message: String, valign: TinyToastDisplayVAlign, duration: TimeInterval, backgoundColor: UIColor, textColor: UIColor, font: UIFont) {
+    init(message: String, valign: TinyToastDisplayVAlign, duration: DispatchTimeInterval, backgoundColor: UIColor, textColor: UIColor, font: UIFont) {
         self.message = message
         self.valign = valign
         self.duration = duration

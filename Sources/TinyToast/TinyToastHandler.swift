@@ -14,7 +14,7 @@ protocol TinyToastDelegate {
 
 final class TinyToastHandler {
     private let windowAlphaValue: CGFloat = 0.95
-    private let fadeDuration: Double = 0.5
+    private let fadeDuration: Double = 0.3
     
     private var toastWindow: UIWindow?
     private var tinyToastViewController: TinyToastViewController?
@@ -22,7 +22,7 @@ final class TinyToastHandler {
     
     func show(message: String,
               valign: TinyToastDisplayVAlign = .center,
-              duration: TimeInterval,
+              duration: DispatchTimeInterval,
               backgoundColor: UIColor,
               textColor: UIColor,
               font: UIFont = UIFont.systemFont(ofSize: 15)) -> Void {
@@ -77,7 +77,7 @@ final class TinyToastHandler {
                         self.delegate?.didCompleted()
                 })
             }
-        }, delay: 0.0)
+        }, delay: .seconds(0))
     }
 }
 
